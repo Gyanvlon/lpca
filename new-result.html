@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<button id="back" class="btn btn-primary">Back</button>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="form-result">
+                            <div class="form-group">
+                                <div>Team Name:</div>
+                                  <input type="text" id="firstTeam" class="form-control" autocomplete="off" required>
+                              </div>
+                              <div class="form-group">
+                                <div>Score:</div>
+                                  <input type="number" id="firstTeamScore" class="form-control" autocomplete="off" required>
+                              </div>
+                               <div style="text-align: center;">vs</div>
+                              <div class="form-group">
+                                <div>Team Name:</div>
+                                  <input type="text" id="secondTeam" class="form-control" autocomplete="off" required>
+                              </div>
+                            
+                              <div class="form-group">
+                                <div>Score:</div>
+                                  <input type="number" id="secondTeamScore" class="form-control" autocomplete="off" required>
+                              </div>
+                              <div class="form-group">
+                                <div>Date:</div>
+                                  <input type="date" id="matchDate" class="form-control" autocomplete="off" required>
+                              </div>
+                            <button type="submit" class="btn btn-success btn-block">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+    <script src="js/newResult.js"></script>
+</body>
+</html>
