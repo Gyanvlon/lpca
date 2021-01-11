@@ -1,5 +1,4 @@
 let results = JSON.parse(localStorage.getItem("results"));
-console.log("here is match", results);
 let resultsView = document.getElementById("leagueTable");
 document.getElementById("back").addEventListener("click", goBack);
 resultsView.innerHTML = "";
@@ -72,39 +71,79 @@ if (results !== null) {
   for (let result of results) {
     let values = matchPlay(result);
     let val = values;
-    console.log("hssh", values);
-    if (
-      values.name == "Manchester City" ||
-      values.name == "Liverpool" ||
-      values.name == "Everton" ||
-      values.name == "Tottenhm Hotspur" ||
-      values.name == "Manchester United" ||
-      values.name == "Arsenal" ||
-      values.name == "Chelsea (C)"
-    ) {
-      for (let team of teams) {
-        if (team.name == values.name) {
-          team.pld += values.pld;
-          team.pts += values.pts;
-          team.w += values.w;
-          team.l += values.l;
-          team.d += values.d;
+    if (values.drawMatch == null) {
+      if (
+        values.winnerTeam.teamName == "Manchester City" ||
+        values.winnerTeam.teamName == "Liverpool" ||
+        values.winnerTeam.teamName == "Everton" ||
+        values.winnerTeam.teamName == "Tottenhm Hotspur" ||
+        values.winnerTeam.teamName == "Manchester United" ||
+        values.winnerTeam.teamName == "Arsenal" ||
+        values.winnerTeam.teamName == "Chelsea (C)"
+      ) {
+        for (let team of teams) {
+          if (team.name == values.winnerTeam.teamName) {
+            team.pld += values.winnerTeam.pld;
+            team.pts += values.winnerTeam.pts;
+            team.w += values.winnerTeam.w;
+            team.l += values.winnerTeam.l;
+            team.d += values.winnerTeam.d;
+          }
+          if (
+            val.looserTeam.teamName == "Manchester City" ||
+            val.looserTeam.teamName == "Liverpool" ||
+            val.looserTeam.teamName == "Everton" ||
+            val.looserTeam.teamName == "Tottenhm Hotspur" ||
+            val.looserTeam.teamName == "Manchester United" ||
+            val.looserTeam.teamName == "Arsenal" ||
+            val.looserTeam.teamName == "Chelsea (C)"
+          ) {
+            if (team.name == val.looserTeam.teamName) {
+              team.pld += val.looserTeam.pld;
+              team.pts += val.looserTeam.pts;
+              team.w += val.looserTeam.w;
+              team.l += val.looserTeam.l;
+              team.d += val.looserTeam.d;
+            }
+          }
         }
-        if (
-          val.sName == "Manchester City" ||
-          val.sName == "Liverpool" ||
-          val.sName == "Everton" ||
-          val.sName == "Tottenhm Hotspur" ||
-          val.sName == "Manchester United" ||
-          val.sName == "Arsenal" ||
-          val.sName == "Chelsea (C)"
-        ) {
-          if (team.name == val.sName) {
-            team.pld += val.pld;
-            team.pts += val.pts;
-            team.w += val.w;
-            team.l += val.l;
-            team.d += val.d;
+      }
+    }
+
+    if (values.drawMatch != null) {
+      if (
+        values.drawMatch.fName == "Manchester City" ||
+        values.drawMatch.fName == "Liverpool" ||
+        values.drawMatch.fName == "Everton" ||
+        values.drawMatch.fName == "Tottenhm Hotspur" ||
+        values.drawMatch.fName == "Manchester United" ||
+        values.drawMatch.fName == "Arsenal" ||
+        values.drawMatch.fName == "Chelsea (C)"
+      ) {
+        for (let team of teams) {
+          if (team.name == values.drawMatch.fName) {
+            team.pld += values.drawMatch.pld;
+            team.pts += values.drawMatch.pts;
+            team.w += values.drawMatch.w;
+            team.l += values.drawMatch.l;
+            team.d += values.drawMatch.d;
+          }
+          if (
+            val.drawMatch.sName == "Manchester City" ||
+            val.drawMatch.sName == "Liverpool" ||
+            val.drawMatch.sName == "Everton" ||
+            val.drawMatch.sName == "Tottenhm Hotspur" ||
+            val.drawMatch.sName == "Manchester United" ||
+            val.drawMatch.sName == "Arsenal" ||
+            val.drawMatch.sName == "Chelsea (C)"
+          ) {
+            if (team.name == val.drawMatch.sName) {
+              team.pld += val.drawMatch.pld;
+              team.pts += val.drawMatch.pts;
+              team.w += val.drawMatch.w;
+              team.l += val.drawMatch.l;
+              team.d += val.drawMatch.d;
+            }
           }
         }
       }
@@ -114,40 +153,64 @@ if (results !== null) {
 
 function matchPlay(result) {
   if (parseInt(result.firstTeamScore) > parseInt(result.secondTeamScore)) {
-    let winMatch = {
-      name: result.firstTeamName,
-      sName: result.secondTeamName,
-      pld: 1,
-      w: 1,
-      l: 0,
-      d: 0,
-      pts: 3,
+    let obj = {
+      winnerTeam: {
+        teamName: result.firstTeamName,
+        pld: 1,
+        w: 1,
+        l: 0,
+        d: 0,
+        pts: 3,
+      },
+      looserTeam: {
+        teamName: result.secondTeamName,
+        pld: 1,
+        w: 0,
+        l: 1,
+        d: 0,
+        pts: 0,
+      },
+      drawMatch: null,
     };
-    return winMatch;
+    return obj;
   } else if (
     parseInt(result.firstTeamScore) < parseInt(result.secondTeamScore)
   ) {
-    let looseMatch = {
-      name: result.firstTeamName,
-      sName: result.secondTeamName,
-      pld: 1,
-      w: 0,
-      d: 0,
-      l: 1,
-      pts: 0,
+    let obj = {
+      winnerTeam: {
+        teamName: result.secondTeamName,
+        pld: 1,
+        w: 1,
+        l: 0,
+        d: 0,
+        pts: 3,
+      },
+      looserTeam: {
+        teamName: result.firstTeamName,
+        pld: 1,
+        w: 0,
+        l: 1,
+        d: 0,
+        pts: 0,
+      },
+      drawMatch: null,
     };
-    return looseMatch;
+    return obj;
   } else {
-    let drawMatch = {
-      name: result.firstTeamName,
-      sName: result.secondTeamName,
-      pld: 1,
-      d: 1,
-      l: 0,
-      w: 0,
-      pts: 1,
+    let obj = {
+      drawMatch: {
+        fName: result.firstTeamName,
+        sName: result.secondTeamName,
+        pld: 1,
+        d: 1,
+        l: 0,
+        w: 0,
+        pts: 1,
+      },
+      winnerTeam: null,
+      looserTeam: null,
     };
-    return drawMatch;
+    return obj;
   }
 }
 teams.sort((a, b) => {
