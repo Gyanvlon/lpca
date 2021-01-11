@@ -32,12 +32,10 @@ if (results !== null) {
   let resultsView = document.getElementById("results");
   resultsView.innerHTML = "";
   resultsView.innerHTML += `<div class="container">
-          <div class="col-md-4">
               <div class="card">
                   <div class="card-body">
                   <div><b>No Match Play </b></div>
                   </div>
-                </div>
             </div>
     </div> <br />`;
 }
