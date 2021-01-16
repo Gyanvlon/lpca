@@ -1,0 +1,65 @@
+
+<div class="card m-6">
+    <h5 class="card-header">Match Play</h5>
+    <div class="card-body text-center">
+        <form  [formGroup]="matchForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-2">
+                    <label>Team Name</label>
+                </div>
+                <div class="form-group col-4">
+                    <select type="text" formControlName="firstTeamName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstTeamName.errors }">
+                        <option hidden selected>Select first team</option>
+                        <option *ngFor="let team of teamsName" >{{team}}</option>
+                    </select>
+                    <div *ngIf="submitted && f.firstTeamName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstTeamName.errors.required || f.firstTeamName.errors.NumberOnly">First Team Name is required and should be stirng only</div>
+                    </div>
+                </div>
+                <div class="form-group col-2 text-center">
+                    <label>Score</label>
+                </div>
+                <div class="form-group col-4">
+                    <input type="text" formControlName="firstTeamScore" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstTeamScore.errors }"  />
+                    <div *ngIf="submitted && f.firstTeamScore.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstTeamScore.errors.required || f.firstTeamScore.errors.NumberOnly">First Team Score is required and should be number only</div>
+                    </div>
+                </div>
+            </div>
+              <div class="text-center">
+                  vs
+              </div> 
+              <br />
+            <div class="form-row">
+                <div class="form-group col-2">
+                    <label>Team Name</label>
+                </div>
+                <div class="form-group col-4">
+                    <select type="text" formControlName="secondTeamName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondTeamName.errors }" > 
+                        <option hidden selected>Select second team</option>
+                        <option *ngFor="let team of teamsName" >{{team}}</option>
+                    </select>
+                    <div *ngIf="submitted && f.secondTeamName.errors" class="invalid-feedback">
+                        <div *ngIf="f.secondTeamName.errors.required || f.secondTeamName.errors.NumberOnly">Second Team Name is required and should be stirng only</div>
+                    </div>
+                </div>
+               
+                <div class="form-group col-2 text-center">
+                    <label>Score</label>
+                </div>
+                <div class="form-group col-4">
+                    <input type="text" formControlName="secondTeamScore" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondTeamScore.errors }"  />
+                    <div *ngIf="submitted && f.secondTeamScore.errors" class="invalid-feedback">
+                        <div *ngIf="f.secondTeamScore.errors.NumberOnly"> Please Enter Country Code only in number</div>
+                        <div *ngIf="f.secondTeamScore.errors.required || f.secondTeamScore.errors.NumberOnly">Second Team Score is required and should be number only</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

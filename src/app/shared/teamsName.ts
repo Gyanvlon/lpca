@@ -1,0 +1,1 @@
+export const teams = ['Arsenal', 'Chelsea','Everton','Liverpool', 'Manchester City','Manchester United', 'Tottenham Hotspur']

@@ -1,0 +1,35 @@
+
+<button (click)="goBack()" class="btn btn-primary">Back</button>
+<h3 style="text-align: center;">League Table</h3>
+<table id="table1" class="table">
+    <thead>
+      <tr>
+        <th>Position</th>
+        <th>Team Name</th>
+        <th>PLD</th>
+        <th>W</th>
+        <th>L</th>
+        <th>D</th>
+        <th>PTS</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let team of teams; index as i" >
+      <tr>
+        <td>{{i+1}}</td>
+        <td>{{team.name}}</td>
+        <td>{{team.pld}}</td>
+        <td>{{team.w}}</td>
+        <td>{{team.l}}</td>
+        <td>{{team.d}}</td>
+        <td>{{team.pts}}</td>
+      </tr>
+    </tbody>
+    </table>
+      <p>For the above view: </p>
+    <div class="ml-3">
+      <p><b>PLD</b> = How many games they have played.</p>
+      <p><b>W</b> = How many games this team won.</p>
+      <p><b>L</b> = How many games this team lost.</p>
+      <p><b>D</b> = How many games this team draws.</p>
+      <p><b>PTS</b> = How many points the team has accumulated for all their games.</p>
+    </div>
