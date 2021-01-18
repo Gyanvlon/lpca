@@ -13,7 +13,7 @@
                         <option *ngFor="let team of teamsName" >{{team}}</option>
                     </select>
                     <div *ngIf="submitted && f.firstTeamName.errors" class="invalid-feedback">
-                        <div *ngIf="f.firstTeamName.errors.required || f.firstTeamName.errors.NumberOnly">First Team Name is required and should be stirng only</div>
+                        <div *ngIf="f.firstTeamName.errors.required">First Team Name is required</div>
                     </div>
                 </div>
                 <div class="form-group col-2 text-center">
@@ -40,7 +40,7 @@
                         <option *ngFor="let team of teamsName" >{{team}}</option>
                     </select>
                     <div *ngIf="submitted && f.secondTeamName.errors" class="invalid-feedback">
-                        <div *ngIf="f.secondTeamName.errors.required || f.secondTeamName.errors.NumberOnly">Second Team Name is required and should be stirng only</div>
+                        <div *ngIf="f.secondTeamName.errors.required">Second Team Name is required</div>
                     </div>
                 </div>
                
@@ -50,7 +50,6 @@
                 <div class="form-group col-4">
                     <input type="text" formControlName="secondTeamScore" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.secondTeamScore.errors }"  />
                     <div *ngIf="submitted && f.secondTeamScore.errors" class="invalid-feedback">
-                        <div *ngIf="f.secondTeamScore.errors.NumberOnly"> Please Enter Country Code only in number</div>
                         <div *ngIf="f.secondTeamScore.errors.required || f.secondTeamScore.errors.NumberOnly">Second Team Score is required and should be number only</div>
                     </div>
                 </div>
